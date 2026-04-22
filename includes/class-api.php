@@ -6,7 +6,7 @@ class Gemini_API {
 
     public static function get_models() {
         $key = self::get_api_key();
-        if (!$key) return new WP_Error('no_key', 'API Key belum diisi.');
+        if (!$key) return new WP_Error('no_key', 'API Key is not filled in.');
 
         $url = "https://generativelanguage.googleapis.com/v1/models?key=" . $key;
         $response = wp_remote_get($url);
@@ -55,7 +55,7 @@ class Gemini_API {
         }
 
         if (!isset($body['candidates'][0]['content']['parts'][0]['text'])) {
-            return new WP_Error('empty_res', 'API tidak mengembalikan teks. Coba ganti model atau prompt.');
+            return new WP_Error('empty_res', 'The API does not return text. Try changing the model or prompt.');
         }
 
         return $body['candidates'][0]['content']['parts'][0]['text'];

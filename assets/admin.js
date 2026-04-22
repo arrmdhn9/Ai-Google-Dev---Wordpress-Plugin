@@ -31,7 +31,7 @@ jQuery(document).ready(function ($) {
     }
 
     btn.prop("disabled", true).text("Thinking...");
-    $("#gpw_status").html("⏳ Gemini sedang menulis...");
+    $("#gpw_status").html("⏳ Gemini is writing...");
 
     $.post(
       ajaxurl,
@@ -71,7 +71,7 @@ jQuery(document).ready(function ($) {
           }
 
           $("#gpw_status").html(
-            '<span style="color:green">✅ Berhasil dimasukkan ke editor!</span>',
+            '<span style="color:green">✅ Success insert to editor!</span>',
           );
         } else {
           $("#gpw_status").html(

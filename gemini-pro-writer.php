@@ -1,8 +1,10 @@
 <?php
 /**
  * Plugin Name: Gemini Pro Writer
- * Description: Integrasi Gemini AI ke Post Editor dengan pendeteksi gambar.
+ * Description: Gemini AI integration into Post Editor with image detection.
  * Version: 2.0
+ * Author: Nama Kamu / Brand Kamu
+ * Author URI: https://domainkamu.com
  */
 
 if (!defined('ABSPATH')) exit;
