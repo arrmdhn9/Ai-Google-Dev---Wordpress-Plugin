@@ -3,8 +3,7 @@
  * Plugin Name: Gemini Pro Writer
  * Description: Gemini AI integration into Post Editor with image detection.
  * Version: 2.0
- * Author: Nama Kamu / Brand Kamu
- * Author URI: https://domainkamu.com
+ * Author: CasperdotID
  */
 
 if (!defined('ABSPATH')) exit;
