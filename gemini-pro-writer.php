@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Gemini Pro Writer
- * Description: Gemini AI integration into Post Editor with image detection.
- * Version: 2.0
+ * Description: Gemini AI integration into Post Editor with smart image detection and auto-placement.
+ * Version: 2.1
  * Author: CasperdotID
  */
 
@@ -15,6 +15,6 @@ require_once GPW_PATH . 'includes/class-api.php';
 require_once GPW_PATH . 'includes/class-settings.php';
 require_once GPW_PATH . 'includes/class-post-editor.php';
 
-// Inisialisasi
+// Inisialisasi plugin
 new Gemini_Settings();
 new Gemini_Post_Editor();

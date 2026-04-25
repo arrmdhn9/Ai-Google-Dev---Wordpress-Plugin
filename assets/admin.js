@@ -31,7 +31,7 @@ jQuery(document).ready(function ($) {
     }
 
     btn.prop("disabled", true).text("Thinking...");
-    $("#gpw_status").html("⏳ Gemini is writing...");
+    $("#gpw_status").html("⏳ Gemini is writing a long tutorial...");
 
     $.post(
       ajaxurl,
@@ -42,19 +42,8 @@ jQuery(document).ready(function ($) {
       },
       function (res) {
         if (res.success) {
-          var aiText = res.data.text;
-          var aiImages = res.data.images;
-
-          // Gabungkan Gambar di bagian atas sebelum teks (Opsional)
-          var imageHtml = "";
-          aiImages.forEach(function (url) {
-            imageHtml +=
-              '<figure class="wp-block-image size-large"><img src="' +
-              url +
-              '" alt="Tutorial Step" /></figure>';
-          });
-
-          var fullHtml = imageHtml + aiText;
+          // Hasil dari PHP sudah termasuk teks dan gambar yang berurutan
+          var fullHtml = res.data.text;
 
           // INSERT KE GUTENBERG (Wordpress Terbaru)
           if (window.wp && wp.blocks) {

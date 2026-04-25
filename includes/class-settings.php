@@ -33,7 +33,8 @@ class Gemini_Settings {
                             <select name="gpw_model">
                                 <?php foreach ($models as $m): 
                                     $m_name = basename($m['name']);
-                                    if (strpos($m_name, 'vision') !== false || strpos($m_name, 'flash') !== false || strpos($m_name, 'pro') !== false): ?>
+                                    // Filter model yang mendukung vision/multimodal
+                                    if (strpos($m_name, 'flash') !== false || strpos($m_name, 'pro') !== false): ?>
                                     <option value="<?php echo $m_name; ?>" <?php selected(get_option('gpw_default_model'), $m_name); ?>>
                                         <?php echo $m['displayName']; ?>
                                     </option>
@@ -45,6 +46,7 @@ class Gemini_Settings {
                         <tr><th>Error</th><td><span style="color:red"><?php echo $models->get_error_message(); ?></span></td></tr>
                     <?php endif; ?>
                 </table>
+                <p class="description">Gunakan model <b>gemini-1.5-flash</b> untuk kecepatan atau <b>gemini-1.5-pro</b> untuk kualitas tutorial terbaik.</p>
                 <input type="submit" name="save_gpw" class="button button-primary" value="Save & Load Models">
             </form>
         </div>

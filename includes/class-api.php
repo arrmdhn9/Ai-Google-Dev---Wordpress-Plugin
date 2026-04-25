@@ -29,7 +29,7 @@ class Gemini_API {
 
         foreach ($images as $img_id) {
             $path = get_attached_file($img_id);
-            if ($path) {
+            if ($path && file_exists($path)) {
                 $parts[] = [
                     'inline_data' => [
                         'mime_type' => get_post_mime_type($img_id),
@@ -39,23 +39,30 @@ class Gemini_API {
             }
         }
 
+        $payload = [
+            'contents' => [['parts' => $parts]],
+            'generationConfig' => [
+                'temperature' => 0.7,
+                'maxOutputTokens' => 99999999, // Ditingkatkan agar teks tidak terpotong
+            ]
+        ];
+
         $response = wp_remote_post($url, [
-            'body'    => json_encode(['contents' => [['parts' => $parts]]]),
+            'body'    => json_encode($payload),
             'headers' => ['Content-Type' => 'application/json'],
-            'timeout' => 120
+            'timeout' => 120 // Timeout lama karena konten panjang
         ]);
 
         if (is_wp_error($response)) return $response;
 
         $body = json_decode(wp_remote_retrieve_body($response), true);
         
-        // Cek jika ada error dari Google
         if (isset($body['error'])) {
             return new WP_Error('api_error', "Google API Error: " . $body['error']['message']);
         }
 
         if (!isset($body['candidates'][0]['content']['parts'][0]['text'])) {
-            return new WP_Error('empty_res', 'The API does not return text. Try changing the model or prompt.');
+            return new WP_Error('empty_res', 'API tidak mengembalikan teks. Coba model lain atau cek gambar.');
         }
 
         return $body['candidates'][0]['content']['parts'][0]['text'];
